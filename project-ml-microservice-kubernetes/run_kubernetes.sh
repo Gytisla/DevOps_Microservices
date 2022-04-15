@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
-# This tags and uploads an image to Docker Hub
+# Deploys application to Kubernetes cluster
 
-# Step 1:
 # This is your Docker ID/path
-# dockerpath=<>
+ dockerpath=gytisl/projectlocal
 
-# Step 2
 # Run the Docker Hub container with kubernetes
-
+kubectl run projectlocal --image=$dockerpath:latest
 
 # Step 3:
-# List kubernetes pods
+kubectl get pods
 
 # Step 4:
-# Forward the container port to a host
+kubectl wait --for=condition=ready pod --all
+kubectl port-forward pod/projectlocal 8000:80
 
